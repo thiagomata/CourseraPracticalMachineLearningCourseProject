@@ -1,8 +1,8 @@
 ---
 title: "Pratical Machine Learning - Course Project"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ## Introduction
@@ -91,7 +91,7 @@ for(field in fields) {
   }
 }
 print(paste("removing these fields for having to many empty values: (",paste(fieldsToRemove, collapse = ', '),")"));
-# use the same field list to train and test to avoid different field list
+# using the same field list to train and test to avoid different field list
 trainData <- trainData[ , !(colnames(trainData) %in% fieldsToRemove)]
 testData  <- testData[  , !(colnames(testData)  %in% fieldsToRemove)]
 ```
@@ -220,9 +220,6 @@ summary(summaryModels)
 bwplot(summaryModels)
 ```
 
-```{r old, out.width='.49\\linewidth', fig.width=3, fig.height=3,fig.show='hold',fig.align='center',results='asis'}
-```
-
 ## Confusion Matrix for each Model
 
 ### Heading  {.tabset}
@@ -235,6 +232,8 @@ allModels.prediction <- list()
 allModels.accuracy <- list()
 allModels.plot <- list()
 test <- ggplot(mtcars, aes(mpg, hp)) + geom_point()
+
+setNumberPrecision <- function(x, k) trimws(format(round(x, k), nsmall=k))
 
 printConfusion <- function(currentConfusionMatrix, modelName) {
   confusionMatrixAsDataFrame <- data.frame(currentConfusionMatrix$table)
@@ -253,20 +252,27 @@ printConfusion <- function(currentConfusionMatrix, modelName) {
 
   cat('\n')
   cat("#### Overall Statistics\n\n")
-  cat("|                            |                                            |\n")
-  cat("|---------------------------:|:-------------------------------------------|\n")
-  cat("| Accuracy:                  |", 
-      currentConfusionMatrix$overall[["Accuracy"]],"|\n")
-  cat("| 95% CI:                    | (",  
-      currentConfusionMatrix$overall[["AccuracyLower"]],",",
-      currentConfusionMatrix$overall[["AccuracyLower"]],")","|\n")
-  cat("| No Information Rate:       |",   
-      currentConfusionMatrix$overall[["AccuracyPValue"]],"|\n")
-  cat("| Kappa:                     |",   
-      currentConfusionMatrix$overall[["Kappa"]],"|\n")
-  cat("| Mcnemar's Test P-Value:    |",   
-      currentConfusionMatrix$overall[["McnemarPValue"]],"|\n")
   cat('\n')
+  
+  numberDigits <- 4
+  tableColumns <- c("Accuracy","95% CI","No Information Rate","Kappa","Mcnemar's Test P-Value")
+  tableValues <- c(
+    setNumberPrecision(currentConfusionMatrix$overall[["Accuracy"]], numberDigits),       # Accuracy
+    paste0(                                                                               # Confidence Interval of accuracy
+      "(",
+      setNumberPrecision(currentConfusionMatrix$overall[["AccuracyLower"]], numberDigits),
+      ",", 
+      setNumberPrecision(currentConfusionMatrix$overall[["AccuracyUpper"]], numberDigits),
+      ")"
+    ),
+    setNumberPrecision(currentConfusionMatrix$overall[["AccuracyPValue"]], numberDigits), # no information rate
+    setNumberPrecision(currentConfusionMatrix$overall[["Kappa"]], numberDigits),          # kappa
+    setNumberPrecision(currentConfusionMatrix$overall[["McnemarPValue"]], numberDigits)   # Mcnemar's Test P-Value
+  )
+  tableStatistics <- data.frame(statistics = tableColumns, values = tableValues)
+  cat(paste0(kable(tableStatistics,digits = 4) %>%
+    kable_styling(bootstrap_options = "striped", full_width = F, position = "center"),collapse="\n"))
+  cat('\n\n')
 
   label <- paste('Statistics by Class of model',modelName)
   cat('\n')
@@ -286,7 +292,6 @@ printConfusion <- function(currentConfusionMatrix, modelName) {
   }
   cat('\n\n')
 }
-
 
 for(modelName in names(allModels)) {
   set.seed(123)
@@ -397,7 +402,6 @@ printConfusion(votingConfusionMatrix, "voting")
 ## Choosing the final Model
 
 The voting process show a good result and because it is combining different approachs it is more hard to have the same type of overfitting.
-
 
 ## Show some samples of prediction on Test Data
 ```{r apply_on_test_data}
