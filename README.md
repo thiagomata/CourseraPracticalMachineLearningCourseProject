@@ -10,7 +10,7 @@ In this [project](https://www.coursera.org/learn/practical-machine-learning/supp
 
 As said previously, the goal of your project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. To do so, it is allowed to use any of the other variables to predict with. This paper must report how built the created model, how were used the cross validation, what is the expected out of sample error, and the cause of the choices maded. After that, it must present the prediction result of the model over 20 different test cases.
 
-## Details
+## Code and Analysis
 
 The R code and details about how this project works can be found on the [Project.Rmd](Project.Rmd). The code with the execution result of that can be found on the [Project.html](https://thiagomata.github.io/CourseraPracticalMachineLearningCourseProject/Project.html) and [Project.pdf](Project.pdf).
 
