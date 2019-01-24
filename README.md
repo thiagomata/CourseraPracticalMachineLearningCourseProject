@@ -35,3 +35,7 @@ The result of the prediction on the test dataset is
 ```
   B A A A A E D B A A B C B A E E A B B B
 ```
+
+## Biografy
+
+[1] Velloso, E.; Bulling, A.; Gellersen, H.; Ugulino, W.; Fuks, H. Qualitative Activity Recognition of Weight Lifting Exercises. Proceedings of 4th International Conference in Cooperation with SIGCHI (Augmented Human ’13) . Stuttgart, Germany: ACM SIGCHI, 2013.
