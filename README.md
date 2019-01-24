@@ -12,7 +12,7 @@ As said previously, the goal of your project is to predict the manner in which t
 
 ## Details
 
-The R code and details about how this project works can be found on the [README.Rmd](README.Rmd). The execution result of that can be found on the [README.html](https://thiagomata.github.io/coursera_practical_machine_learning_course_project/README.html) and [README.pdf](README.pdf).
+The R code and details about how this project works can be found on the [Project.Rmd](Project.Rmd). The code with the execution result of that can be found on the [Project.html](https://thiagomata.github.io/CourseraPracticalMachineLearningCourseProject/Project.html) and [Project.pdf](Project.pdf).
 
 ## Result
 
