@@ -22,10 +22,10 @@ The result comparing with the validation data is:
 
 ### Overall Statistics
 
-#### Accuracy:	0.9831633
-#### 95% CI:	( 0.9764356 , 0.9764356 )
+#### Accuracy:	0.9832
+#### 95% CI:	( 0.9764, 0.9884 )
 #### No Information Rate:	0
-#### Kappa:	0.9786948
+#### Kappa:	0.9787
 #### Mcnemar’s Test P-Value:	NaN
 
 ## Preditictions on the Test Dataset
