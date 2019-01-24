@@ -1,0 +1,2 @@
+# coursera_practical_machine_learning_course_project
+Final project of the Practical Machine Learning
